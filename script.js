@@ -297,6 +297,34 @@ if (pettingCat) {
   });
 }
 
+// Interactive Stalking Cat Tap
+const stalkingCat = document.getElementById('stalkingCatContainer');
+if (stalkingCat) {
+  stalkingCat.addEventListener('click', (e) => {
+    e.stopPropagation();
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(650, now);
+      osc.frequency.linearRampToValueAtTime(1100, now + 0.12);
+      osc.frequency.exponentialRampToValueAtTime(800, now + 0.28);
+      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.32);
+    } catch(err) {}
+
+    for (let i = 0; i < 8; i++) {
+      particles.push(new HeartSparkleParticle(window.innerWidth * 0.35, window.innerHeight * 0.35, true));
+    }
+  });
+}
+
 // Run particle loop
 renderCanvas();
 

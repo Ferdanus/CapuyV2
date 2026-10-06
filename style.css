@@ -760,3 +760,235 @@ html, body {
     transform: translate(-36px, -55px) rotate(15deg) scale(1.25);
   }
 }
+
+/* ===================================================
+   Cute Stalking Cat Feature (Kucing Stalking Foto)
+   =================================================== */
+.stalking-cat-container {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  width: 90px;
+  height: 60px;
+  pointer-events: auto;
+  z-index: 35;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s 0.4s ease, transform 0.6s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.envelope.sweet-mode .stalking-cat-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stalker-cat {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: stalkerPeek 4s infinite ease-in-out;
+}
+
+/* Stalker Ears */
+.stalker-ears {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 66px;
+  height: 18px;
+}
+
+.stalker-ear {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 18px solid #ffeedb;
+  filter: drop-shadow(0 -1px 2px rgba(255, 183, 133, 0.5));
+}
+
+.stalker-ear-l {
+  left: 4px;
+  transform: rotate(-15deg);
+  animation: earTwitchL 3.5s infinite ease-in-out;
+}
+
+.stalker-ear-r {
+  right: 4px;
+  transform: rotate(15deg);
+  animation: earTwitchR 3.5s infinite ease-in-out;
+}
+
+.stalker-ear::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: -5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 11px solid #ffb5a7;
+}
+
+/* Stalker Head */
+.stalker-head {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 38px;
+  background: #ffeedb;
+  border-radius: 24px 24px 10px 10px;
+  border: 2.5px solid #fed1b2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Big Curious Stalker Eyes */
+.stalker-eye-socket {
+  position: absolute;
+  top: 10px;
+  width: 16px;
+  height: 18px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #590d22;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.stalker-eye-socket.eye-l {
+  left: 10px;
+}
+
+.stalker-eye-socket.eye-r {
+  right: 10px;
+}
+
+.stalker-pupil {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 9px;
+  height: 11px;
+  background: #2b111e;
+  border-radius: 50%;
+  animation: stalkerPupilMove 4s infinite ease-in-out;
+}
+
+.stalker-glint {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.stalker-nose {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 4px;
+  background: #ff758f;
+  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+}
+
+.stalker-blush {
+  position: absolute;
+  top: 21px;
+  width: 10px;
+  height: 5px;
+  background: #ff8fab;
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.stalker-blush-l {
+  left: 7px;
+}
+
+.stalker-blush-r {
+  right: 7px;
+}
+
+/* Stalker Paws Gripping the Photo Edge */
+.stalker-paws {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stalker-paw {
+  width: 16px;
+  height: 12px;
+  background: #ffeedb;
+  border-radius: 8px 8px 4px 4px;
+  border: 2px solid #fed1b2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* Stalking Peek Animation */
+@keyframes stalkerPeek {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  85% {
+    transform: translateY(8px);
+  }
+  92% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Eyes Scanning / Stalking the photo */
+@keyframes stalkerPupilMove {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(2px, 2px); /* looking down towards Bubuy */
+  }
+  45% {
+    transform: translate(-2px, 1px); /* looking left */
+  }
+  65% {
+    transform: translate(3px, 2px); /* staring closely at photo */
+  }
+  85% {
+    transform: translate(0, -2px); /* looking up */
+  }
+}
+
+@keyframes earTwitchL {
+  0%, 90%, 100% { transform: rotate(-15deg); }
+  92% { transform: rotate(-25deg); }
+  96% { transform: rotate(-10deg); }
+}
+
+@keyframes earTwitchR {
+  0%, 88%, 100% { transform: rotate(15deg); }
+  90% { transform: rotate(25deg); }
+  94% { transform: rotate(10deg); }
+}
