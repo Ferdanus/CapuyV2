@@ -269,5 +269,34 @@ btnReset.addEventListener('click', (e) => {
   resetEnvelope();
 });
 
+// Interactive Cat Petting Tap
+const pettingCat = document.getElementById('pettingCatContainer');
+if (pettingCat) {
+  pettingCat.style.pointerEvents = 'auto';
+  pettingCat.addEventListener('click', (e) => {
+    e.stopPropagation();
+    try {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(880, now);
+      osc.frequency.exponentialRampToValueAtTime(1320, now + 0.18);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.26);
+    } catch(err) {}
+
+    for (let i = 0; i < 8; i++) {
+      particles.push(new HeartSparkleParticle(window.innerWidth * 0.65, window.innerHeight * 0.55, true));
+    }
+  });
+}
+
 // Run particle loop
 renderCanvas();
+
